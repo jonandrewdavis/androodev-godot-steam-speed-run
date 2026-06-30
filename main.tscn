@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://d0ch8lavffene"]
+
+[ext_resource type="Script" uid="uid://dwfwftrxk6kop" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://c16plnvje3pgr" path="res://world.tscn" id="2_0xm2m"]
+
+[node name="Main" type="Node" unique_id=2062728515]
+script = ExtResource("1_ig7tw")
+
+[node name="UI" type="Control" parent="." unique_id=308669286]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MainMenu" type="VBoxContainer" parent="UI" unique_id=1311300607]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LobbyList" type="VBoxContainer" parent="UI/MainMenu" unique_id=1678430427]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ButtonJoin" type="Button" parent="UI/MainMenu" unique_id=398031561]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Join"
+
+[node name="ButtonHost" type="Button" parent="UI/MainMenu" unique_id=1739875796]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Host"
+
+[node name="PlayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1180453290]
+unique_name_in_owner = true
+_spawnable_scenes = PackedStringArray("uid://bmh4v78n5n038")
+spawn_path = NodePath(".")
+
+[node name="World" parent="." unique_id=216666818 instance=ExtResource("2_0xm2m")]

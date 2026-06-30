@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://bmh4v78n5n038"]
+
+[ext_resource type="Script" uid="uid://dp876bofj3kjh" path="res://player.gd" id="1_4flbx"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_yruvy"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pr2nu"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_yruvy"]
+top_radius = 0.2
+bottom_radius = 0.05
+height = 0.8
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_sh265"]
+properties/0/path = NodePath(".:rotation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Head:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("Nameplate:text")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
+[node name="Player" type="CharacterBody3D" unique_id=1526330783]
+script = ExtResource("1_4flbx")
+
+[node name="MeshBody" type="MeshInstance3D" parent="." unique_id=1205569104]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_yruvy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1754830083]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_pr2nu")
+
+[node name="Head" type="Node3D" parent="." unique_id=1814637264]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=1231304423]
+unique_name_in_owner = true
+
+[node name="Nose" type="MeshInstance3D" parent="Head" unique_id=900612584]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.4292568)
+mesh = SubResource("CylinderMesh_yruvy")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=153061357]
+replication_config = SubResource("SceneReplicationConfig_sh265")
+
+[node name="Nameplate" type="Label3D" parent="." unique_id=417507950]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1783216, 0)
+billboard = 2
